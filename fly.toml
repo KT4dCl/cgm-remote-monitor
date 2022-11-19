@@ -1,0 +1,4 @@
+app = "ktlcgm"
+
+[build]
+  dockerfile = "Dockerfile.flyio"
