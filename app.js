@@ -9,9 +9,21 @@ const path = require('path');
 const fs = require('fs');
 const ejs = require('ejs');
 
+const basicAuth = require('express-basic-auth');
+
 function create (env, ctx) {
   var app = express();
   var appInfo = env.name + ' ' + env.version;
+
+  // Set basic auth.
+  if (process.env.BASIC_AUTH_USER && process.env.BASIC_AUTH_PASS) {
+    console.log('Using basic auth...');
+    app.use(basicAuth({
+      users: { [process.env.BASIC_AUTH_USER]: process.env.BASIC_AUTH_PASS }
+    }));
+  } else {
+    console.log('Skipping basic auth. Required environment variables not set');
+  }
 
   // https://developers.google.com/search/docs/crawling-indexing/block-indexing#http-response-header.
   app.use((req, res, next) => {
