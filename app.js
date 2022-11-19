@@ -12,6 +12,13 @@ const ejs = require('ejs');
 function create (env, ctx) {
   var app = express();
   var appInfo = env.name + ' ' + env.version;
+
+  // https://developers.google.com/search/docs/crawling-indexing/block-indexing#http-response-header.
+  app.use((req, res, next) => {
+    res.setHeader('x-robots-tag', 'noindex');
+    next();
+  });
+
   app.set('title', appInfo);
   app.enable('trust proxy'); // Allows req.secure test on heroku https connections.
   var insecureUseHttp = env.insecureUseHttp;
