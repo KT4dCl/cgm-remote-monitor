@@ -19,7 +19,8 @@ function create (env, ctx) {
   if (process.env.BASIC_AUTH_USER && process.env.BASIC_AUTH_PASS) {
     console.log('Using basic auth...');
     app.use(basicAuth({
-      users: { [process.env.BASIC_AUTH_USER]: process.env.BASIC_AUTH_PASS }
+      challenge: true,
+      users: { [process.env.BASIC_AUTH_USER]: process.env.BASIC_AUTH_PASS },
     }));
   } else {
     console.log('Skipping basic auth. Required environment variables not set');
