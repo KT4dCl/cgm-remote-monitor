@@ -11,6 +11,6 @@ jobs:
       runs-on: ubuntu-latest
       environment: ktlcgm
       steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v4
         - uses: superfly/flyctl-actions/setup-flyctl@master
         - run: flyctl deploy --remote-only
