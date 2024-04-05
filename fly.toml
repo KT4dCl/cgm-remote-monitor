@@ -1,4 +1,4 @@
-app = "ktlcgm2024"
+app = "ktlcgm"
 
 [build]
   dockerfile = "Dockerfile.flyio"
